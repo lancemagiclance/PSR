@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            let playerWins = 0;
+            let compWins = 0;
+
+            function computerPlay() {
+                let compChoice;
+                randBase = Math.floor(Math.random() * 3);
+                if (randBase === 0) compChoice = "Rock";
+                else if (randBase === 1) compChoice = "Paper";
+                else compChoice = "Scissors";
+                return compChoice;
+            }
+
+            function askPlayer() {
+                let playerChoice;
+                let playerText;
+                playerText = prompt("Please select Rock, Paper, or Scissors");
+                playerChoice = (playerText[0].toUpperCase() + playerText.substr(1, (playerText.length-1)).toLowerCase());
+                while (playerChoice !== "Rock" && playerChoice !== "Paper" && playerChoice !== "Scissors") {
+                    playerText = prompt("You didn't make a valid selection...Try again?");
+                    playerChoice = playerText[0].toUpperCase() + playerText.substr(1, (playerText.length-1)).toLowerCase();
+                }
+                return playerChoice;
+            }
+
+            function goRound(playerSelection, computerSelection) {
+                if (playerSelection === computerSelection) {
+                    return "Draw!";
+                }
+                else if (playerSelection === "Rock" && computerSelection === "Paper") {
+                    compWins++;
+                    return "You Lose! Paper beats Rock";
+                }
+                else if (playerSelection === "Rock" && computerSelection === "Scissors") {
+                    playerWins++;
+                    return "You Win! Rock beats Scissors";
+                }
+                else if (playerSelection === "Paper" && computerSelection === "Rock") {
+                    playerWins++;
+                    return "You Win! Paper beats Rock";
+                }
+                else if (playerSelection === "Paper" && computerSelection === "Scissors") {
+                    compWins++;
+                    return "You Lose! Scissors beats Paper";
+                }
+                else if (playerSelection === "Scissors" && computerSelection === "Rock") {
+                    compWins++;
+                    return "You Lose! Rock beats Scissors";
+                }
+                else if (playerSelection === "Scissors" && computerSelection === "Paper") {
+                    playerWins++;
+                    return "You Win! Scissors beats Paper";
+                }
+                else return "How did you break the game?";
+            }
+
+            function game() {
+                firstGame = goRound(askPlayer(), computerPlay());
+                console.log(firstGame);
+                secondGame = goRound(askPlayer(), computerPlay());
+                console.log(secondGame);
+                thirdGame = goRound(askPlayer(), computerPlay());
+                console.log(thirdGame);
+                fourthGame = goRound(askPlayer(), computerPlay());
+                console.log(fourthGame);
+                fifthGame = goRound(askPlayer(), computerPlay());
+                console.log(fifthGame);
+                if (playerWins === compWins) console.log("The final result is a Draw!");
+                else if (playerWins > compWins) console.log("The final result is Victory!");
+                else console.log("The final result is Defeat!");
+            }
+
+            game();
+        </script>
+    </body>
+</html>
