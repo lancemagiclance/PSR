@@ -62,16 +62,9 @@
             }
 
             function game() {
-                firstGame = goRound(askPlayer(), computerPlay());
-                console.log(firstGame);
-                secondGame = goRound(askPlayer(), computerPlay());
-                console.log(secondGame);
-                thirdGame = goRound(askPlayer(), computerPlay());
-                console.log(thirdGame);
-                fourthGame = goRound(askPlayer(), computerPlay());
-                console.log(fourthGame);
-                fifthGame = goRound(askPlayer(), computerPlay());
-                console.log(fifthGame);
+                for (i = 0; i < 5; i++) {
+                    console.log(goRound(askPlayer(), computerPlay()));
+                }
                 if (playerWins === compWins) console.log("The final result is a Draw!");
                 else if (playerWins > compWins) console.log("The final result is Victory!");
                 else console.log("The final result is Defeat!");
